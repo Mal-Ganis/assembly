@@ -1,14 +1,10 @@
-;---------------------------------------------
-;  sum1toN.asm  | tasm sum1toN.asm
-;              | tlink sum1toN.obj
-;---------------------------------------------
 .MODEL SMALL
 .STACK 100h
 .DATA
 PROMPT  DB 'Input 1-100: $'
 CRLF    DB 13,10,'$'
 .CODE
-;--------- 写字符串（'$' 结尾）---------
+
 PUTS PROC
         push ax
         mov ah,09h
@@ -17,7 +13,7 @@ PUTS PROC
         ret
 PUTS ENDP
 
-;--------- 写单个字符 DL ---------
+
 PUTCH PROC
         push ax
         mov ah,02h
@@ -26,8 +22,6 @@ PUTCH PROC
         ret
 PUTCH ENDP
 
-;--------- 十进制 → AX ---------
-; 出口：AX=数值  支持 0-65535
 READ_DEC PROC
         push bx 
         push cx
@@ -60,7 +54,6 @@ READ_DEC PROC
         ret
 READ_DEC ENDP
 
-;--------- AX → 十进制打印 ---------
 WRITE_DEC PROC
         push ax
         push bx 
@@ -85,7 +78,6 @@ WRITE_DEC PROC
         ret
 WRITE_DEC ENDP
 
-;--------- 主程序 ---------
 MAIN PROC FAR
         mov ax,@data
         mov ds,ax
